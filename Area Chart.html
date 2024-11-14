@@ -1,149 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Area Chart</title>
+    <title>Pomodoro Timer</title>
     <style>
-        .highcharts-figure,
-        .highcharts-data-table table {
-            min-width: 320px;
-            max-width: 800px;
-            margin: 1em auto;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-
-        #container {
-            height: 450px;
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
         }
-
-        .highcharts-data-table table {
-            font-family: Verdana, sans-serif;
-            border-collapse: collapse;
-            border: 1px solid yellow;
-            margin: 10px auto;
+        
+        .timer-container {
             text-align: center;
-            width: 100%;
-            max-width: 500px;
+            background: #88c4d3;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
-
-        .highcharts-data-table caption {
-            padding: 1em 0;
-            font-size: 1.2em;
-            color: #555;
+        
+        h1 {
+            font-size: 24px;
+            color: #333;
         }
-
-        .highcharts-data-table th {
-            font-weight: 600;
-            padding: 0.5em;
+        
+        .timer-display {
+            font-size: 48px;
+            color: #333;
+            margin: 20px 0;
         }
-
-        .highcharts-data-table td,
-        .highcharts-data-table th,
-        .highcharts-data-table caption {
-            padding: 0.5em;
+        
+        .controls button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 0 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
         }
-
-        .highcharts-data-table thead tr,
-        .highcharts-data-table tr:nth-child(even) {
-            background: #f8f8f8;
+        
+        #startPauseButton {
+            background-color: #4CAF50;
+            color: white;
         }
-
-        .highcharts-data-table tr:hover {
-            background: pink;
+        
+        #resetButton {
+            background-color: #f44336;
+            color: white;
         }
+        
+        .session-info {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+        
     </style>
 </head>
-
 <body>
-    <figure class="highcharts-figure">
-        <div id="container"></div>
-        <script src="https://code.highcharts.com/highcharts.js"></script>
-        <script src="https://code.highcharts.com/modules/exporting.js"></script>
-        <script src="https://code.highcharts.com/modules/export-data.js"></script>
-        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-        <script>
-            Highcharts.chart('container', {
-                chart: {
-                    type: 'area'
-                },
-                accessibility: {
-                    description: ''
-                },
-                title: {
-                    text: 'Highest Employees Salary'
-                },
-                subtitle: {
-                    text: 'Created By Brahma Prakash Shukla'
-                },
-                xAxis: {
-                    allowDecimals: false,
-                    labels: {
-                        formatter: function () {
-                            return this.value; // clean, unformatted number for year
-                        }
-                    },
-                    accessibility: {
-                        rangeDescription: 'Range: 1940 to 2017.'
-                    }
-                },
-                yAxis: {
-                    title: {
-                        text: 'Salary'
-                    },
-                    labels: {
-                        formatter: function () {
-                            return this.value / 1000 + 'k';
-                        }
-                    }
-                },
-                tooltip: {
-                    pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
-                },
-                plotOptions: {
-                    area: {
-                        pointStart: 1940,
-                        marker: {
-                            enabled: false,
-                            symbol: 'circle',
-                            radius: 2,
-                            states: {
-                                hover: {
-                                    enabled: true
-                                }
-                            }
-                        }
-                    }
-                },
-                series: [{
-                    name: 'Aman',
-                    data: [
-                        null, null, null, null, null, 2, 9, 13, 50, 170, 299, 438, 841,
-                        1169, 1703, 2422, 3692, 5543, 7345, 12298, 18638, 22229, 25540,
-                        28133, 29463, 31139, 31175, 31255, 29561, 27552, 26008, 25830,
-                        26516, 27835, 28537, 27519, 25914, 25542, 24418, 24138, 24104,
-                        23208, 22886, 23305, 23459, 23368, 23317, 23575, 23205, 22217,
-                        21392, 19008, 13708, 11511, 10979, 10904, 11011, 10903, 10732,
-                        10685, 10577, 10526, 10457, 10027, 8570, 8360, 7853, 5709, 5273,
-                        5113, 5066, 4897, 4881, 4804, 4717, 4571, 4018, 3822, 3785, 3805,
-                        3750, 3708, 3708
-                    ]
-                }, {
-                    name: 'Kishan',
-                    data: [null, null, null, null, null, null, null, null, null,
-                        1, 5, 25, 50, 120, 150, 200, 426, 660, 863, 1048, 1627, 2492,
-                        3346, 4259, 5242, 6144, 7091, 8400, 9490, 10671, 11736, 13279,
-                        14600, 15878, 17286, 19235, 22165, 24281, 26169, 28258, 30665,
-                        32146, 33486, 35130, 36825, 38582, 40159, 38107, 36538, 35078,
-                        32980, 29154, 26734, 24403, 21339, 18179, 15942, 15442, 14368,
-                        13188, 12188, 11152, 10114, 9076, 8038, 7000, 6643, 6286, 5929,
-                        5527, 5215, 4858, 4750, 4650, 4600, 4500, 4490, 4300, 4350, 4330,
-                        4310, 4495, 4477
-                    ]
-                }]
-            });
-        </script>
-    </figure>
-</body>
+    <div class="timer-container">
+        <h1>Pomodoro Timer</h1>
+        <div class="timer-display" id="timerDisplay">25:00</div>
+        <div class="controls">
+            <button id="startPauseButton">Start</button>
+            <button id="resetButton">Reset</button>
+        </div>
+        <div class="session-info" id="sessionInfo">Work Session</div>
+    </div>
+   <script>
+    let workTime = 25 * 60; // 25 minutes
+let breakTime = 5 * 60; // 5 minutes
+let isWorkSession = true;
+let isTimerRunning = false;
+let currentTime = workTime;
+let timerInterval;
 
+const timerDisplay = document.getElementById('timerDisplay');
+const startPauseButton = document.getElementById('startPauseButton');
+const resetButton = document.getElementById('resetButton');
+const sessionInfo = document.getElementById('sessionInfo');
+
+// Function to update the display
+function updateDisplay() {
+    const minutes = Math.floor(currentTime / 60);
+    const seconds = currentTime % 60;
+    timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
+
+// Function to start or pause the timer
+function startPauseTimer() {
+    if (isTimerRunning) {
+        clearInterval(timerInterval);
+        startPauseButton.textContent = 'Start';
+    } else {
+        timerInterval = setInterval(countdown, 1000);
+        startPauseButton.textContent = 'Pause';
+    }
+    isTimerRunning = !isTimerRunning;
+}
+
+// Countdown function for the timer
+function countdown() {
+    if (currentTime > 0) {
+        currentTime--;
+        updateDisplay();
+    } else {
+        clearInterval(timerInterval);
+        isTimerRunning = false;
+        switchSession();
+    }
+}
+
+// Function to switch between work and break sessions
+function switchSession() {
+    isWorkSession = !isWorkSession;
+    currentTime = isWorkSession ? workTime : breakTime;
+    sessionInfo.textContent = isWorkSession ? 'Work Session' : 'Break Session';
+    updateDisplay();
+    startPauseButton.textContent = 'Start';
+}
+
+// Function to reset the timer
+function resetTimer() {
+    clearInterval(timerInterval);
+    isTimerRunning = false;
+    isWorkSession = true;
+    currentTime = workTime;
+    sessionInfo.textContent = 'Work Session';
+    updateDisplay();
+    startPauseButton.textContent = 'Start';
+}
+
+// Initial display update
+updateDisplay();
+
+// Event listeners
+startPauseButton.addEventListener('click', startPauseTimer);
+resetButton.addEventListener('click', resetTimer);
+
+   </script>
+</body>
 </html>
